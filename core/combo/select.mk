@@ -91,6 +91,7 @@ ifneq ($(USE_CCACHE),)
     endif
     ccache := prebuilts/misc/$(CCACHE_HOST_TAG)/ccache/ccache
   endif
+
   # Check that the executable is here.
   ccache := $(strip $(wildcard $(ccache)))
   ifdef ccache
