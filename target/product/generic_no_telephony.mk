@@ -26,8 +26,6 @@ PRODUCT_PACKAGES := \
     Calendar \
     Camera2 \
     CertInstaller \
-    Email \
-    Exchange2 \
     FusedLocation \
     Gallery2 \
     InputDevices \
@@ -36,7 +34,6 @@ PRODUCT_PACKAGES := \
     Launcher2 \
     Music \
     OneTimeInitializer \
-    PrintSpooler \
     Provision \
     Settings \
     SystemUI \
