@@ -63,5 +63,20 @@ PRODUCT_PACKAGES += \
     telephony-msim
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_minimal.mk)
-# Override the PRODUCT_BOOT_JARS set in core_minimal.mk
-PRODUCT_BOOT_JARS := core:conscrypt:okhttp:core-junit:bouncycastle:ext:framework:framework2:telephony-common:voip-common:mms-common:android.policy:services:apache-xml:webviewchromium:telephony-msim
+# Override the PRODUCT_BOOT_JARS set in core_minimal.mk. The order matters.
+PRODUCT_BOOT_JARS := \
+    core \
+    conscrypt \
+    okhttp \
+    core-junit \
+    bouncycastle \
+    ext \
+    framework \
+    framework2 \
+    telephony-common \
+    voip-common \
+    mms-common \
+    android.policy \
+    services \
+    apache-xml \
+    webviewchromium
