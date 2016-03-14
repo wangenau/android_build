@@ -79,4 +79,5 @@ PRODUCT_BOOT_JARS := \
     android.policy \
     services \
     apache-xml \
-    webviewchromium
+    webviewchromium \
+    telephony-msim
