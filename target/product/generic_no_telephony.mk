@@ -32,7 +32,6 @@ PRODUCT_PACKAGES := \
     Keyguard \
     LatinIME \
     Launcher2 \
-    Music \
     OneTimeInitializer \
     Provision \
     Settings \
