@@ -20,20 +20,16 @@ PRODUCT_PROPERTY_OVERRIDES :=
 PRODUCT_PACKAGES := \
 	Calculator \
 	DeskClock \
-	Email \
-	Exchange2 \
 	FusedLocation \
 	Gallery2 \
 	Keyguard \
 	Apollo \
 	Mms \
 	OpenWnn \
-	PrintSpooler \
 	libWnnEngDic \
 	libWnnJpnDic \
 	libwnndict \
 	TeleService \
-	PinyinIME \
 	libjni_pinyinime \
 	SoftKeyboard \
 	SystemUI \
@@ -51,7 +47,6 @@ PRODUCT_PACKAGES := \
 	LiveWallpapersPicker \
 	ApiDemos \
 	GestureBuilder \
-	CubeLiveWallpapers \
 	QuickSearchBox \
 	WidgetPreview \
 	librs_jni \
