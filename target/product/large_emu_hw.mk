@@ -40,7 +40,6 @@ PRODUCT_PACKAGES := \
     hostapd \
     wpa_supplicant.conf
 
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core.mk)
 
 # Overrides

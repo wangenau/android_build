@@ -22,4 +22,3 @@ PRODUCT_PACKAGES := \
     InCallUI \
     Mms \
     rild
-

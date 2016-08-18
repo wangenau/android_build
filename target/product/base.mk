@@ -106,5 +106,4 @@ PRODUCT_PACKAGES += \
     webview \
     wm
 
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
