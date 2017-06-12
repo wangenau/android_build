@@ -62,7 +62,8 @@ TARGET_STRIP := $(TARGET_TOOLS_PREFIX)strip$(HOST_EXECUTABLE_SUFFIX)
 ifeq ($(TARGET_BUILD_VARIANT),user)
     TARGET_STRIP_COMMAND = $(TARGET_STRIP) --strip-all $< -o $@
 else
-    TARGET_STRIP_COMMAND = $(TARGET_STRIP) --strip-all $< -o $@
+    TARGET_STRIP_COMMAND = $(TARGET_STRIP) --strip-all $< -o $@ && \
+        $(TARGET_OBJCOPY) --add-gnu-debuglink=$< $@
 endif
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
