@@ -13,7 +13,8 @@ ifeq ($(strip $(TARGET_CPU_VARIANT)),cortex-a9)
 	arch_variant_cflags := -mcpu=cortex-a9 -mfpu=neon
 else
 ifeq ($(strip $(TARGET_CPU_VARIANT)),cortex-a8)
-	arch_variant_cflags := -mcpu=cortex-a8 -mfpu=neon
+	arch_variant_cflags := -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfpu=neon
+	arch_variant_aflags := -mfpu=neon -mfloat-abi=softfp
 	arch_variant_ldflags := -Wl,--fix-cortex-a8
 else
 ifeq ($(strip $(TARGET_CPU_VARIANT)),cortex-a7)
@@ -23,9 +24,12 @@ ifeq ($(strip $(TARGET_CPU_VARIANT)),cortex-a5)
 	arch_variant_cflags := -mcpu=cortex-a5 -mfpu=neon-vfpv4
 else
 ifeq ($(strip $(TARGET_CPU_VARIANT)),scorpion)
-	arch_variant_cflags := -mcpu=cortex-a8 -mfpu=neon
+	arch_variant_cflags := -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfpu=neon
+	arch_variant_aflags := -mfpu=neon -mfloat-abi=softfp
+	arch_variant_ldflags := -Wl,--fix-cortex-a8
 else
-	arch_variant_cflags := -march=armv7-a -mfpu=neon
+	arch_variant_cflags := -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfpu=neon
+	arch_variant_aflags := -mfpu=neon -mfloat-abi=softfp
 endif
 endif
 endif

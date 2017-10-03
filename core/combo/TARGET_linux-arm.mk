@@ -31,7 +31,7 @@
 # version.
 #
 ifeq ($(strip $(TARGET_ARCH_VARIANT)),)
-TARGET_ARCH_VARIANT := armv5te
+TARGET_ARCH_VARIANT := armv7-a-neon
 endif
 
 ifeq ($(strip $(TARGET_GCC_VERSION_EXP)),)
@@ -86,7 +86,7 @@ TARGET_GLOBAL_CPPFLAGS += -O3 -DNDEBUG -funsafe-loop-optimizations -fsection-anc
 # with -mlong-calls.  When built at -O0, those libraries are
 # too big for a thumb "BL <label>" to go from one end to the other.
 ifeq ($(FORCE_ARM_DEBUGGING),true)
-  TARGET_arm_CFLAGS += -fno-omit-frame-pointer -fno-strict-aliasing
+  TARGET_arm_CFLAGS += -marm -fno-omit-frame-pointer -fno-strict-aliasing
   TARGET_thumb_CFLAGS += -marm -fno-omit-frame-pointer
 endif
 
@@ -101,6 +101,11 @@ endif
 android_config_h := $(call select-android-config-h,linux-arm)
 
 TARGET_GLOBAL_CFLAGS += \
+			-march=armv7-a \
+			-mcpu=cortex-a8 \
+			-mtune=cortex-a8 \
+			-mfpu=neon \
+			-mfloat-abi=softfp \
 			-msoft-float -fpic $(PIE_GLOBAL_CFLAGS) \
 			-ffunction-sections \
 			-fdata-sections \
@@ -211,7 +216,7 @@ TARGET_CRTEND_O := $(TARGET_OUT_INTERMEDIATE_LIBRARIES)/crtend_android.o
 TARGET_CRTBEGIN_SO_O := $(TARGET_OUT_INTERMEDIATE_LIBRARIES)/crtbegin_so.o
 TARGET_CRTEND_SO_O := $(TARGET_OUT_INTERMEDIATE_LIBRARIES)/crtend_so.o
 
-TARGET_STRIP_MODULE:=true
+TARGET_STRIP_MODULE := true
 
 TARGET_DEFAULT_SYSTEM_SHARED_LIBRARIES := libc libstdc++ libm
 
