@@ -395,7 +395,7 @@ function choosevariant()
         index=$(($index+1))
     done
 
-    local default_value=eng
+    local default_value=user
     local ANSWER
 
     export TARGET_BUILD_VARIANT=
@@ -462,7 +462,7 @@ function add_lunch_combo()
 }
 
 # add the default one here
-add_lunch_combo aosp_arm-eng
+add_lunch_combo aosp_arm-user
 add_lunch_combo aosp_x86-eng
 add_lunch_combo aosp_mips-eng
 add_lunch_combo vbox_x86-eng
@@ -515,7 +515,7 @@ function breakfast()
     local variant=$2
     CM_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
-    add_lunch_combo full-eng
+    add_lunch_combo full-user
     for f in `/bin/ls vendor/cm/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
@@ -557,7 +557,7 @@ function lunch()
         answer=$1
     else
         print_lunch_menu
-        echo -n "Which would you like? [aosp_arm-eng] "
+        echo -n "Which would you like? [aosp_arm-user] "
         read answer
     fi
 
@@ -565,7 +565,7 @@ function lunch()
 
     if [ -z "$answer" ]
     then
-        selection=aosp_arm-eng
+        selection=aosp_arm-user
     elif (echo -n $answer | grep -q -e "^[0-9][0-9]*$")
     then
         if [ $answer -le ${#LUNCH_MENU_CHOICES[@]} ]
@@ -672,7 +672,7 @@ function tapas()
       armv5) product=generic_armv5;;
     esac
     if [ -z "$variant" ]; then
-        variant=eng
+        variant=user
     fi
     if [ -z "$apps" ]; then
         apps=all
