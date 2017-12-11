@@ -86,7 +86,7 @@ TARGET_GLOBAL_CPPFLAGS += -O3 -DNDEBUG -funsafe-loop-optimizations -fsection-anc
 # with -mlong-calls.  When built at -O0, those libraries are
 # too big for a thumb "BL <label>" to go from one end to the other.
 ifeq ($(FORCE_ARM_DEBUGGING),true)
-  TARGET_arm_CFLAGS += -marm -fno-omit-frame-pointer -fno-strict-aliasing
+  TARGET_arm_CFLAGS += -fno-omit-frame-pointer -fno-strict-aliasing
   TARGET_thumb_CFLAGS += -marm -fno-omit-frame-pointer
 endif
 
@@ -106,6 +106,7 @@ TARGET_GLOBAL_CFLAGS += \
 			-mtune=cortex-a8 \
 			-mfpu=neon \
 			-mfloat-abi=softfp \
+			-marm \
 			-msoft-float -fpic $(PIE_GLOBAL_CFLAGS) \
 			-ffunction-sections \
 			-fdata-sections \

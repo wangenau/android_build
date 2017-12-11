@@ -89,20 +89,20 @@ CLANG_CONFIG_EXTRA_TARGET_C_INCLUDES := external/clang/lib/include $(TARGET_OUT_
 # remove unknown flags to define CLANG_FLAGS
 TARGET_GLOBAL_CLANG_FLAGS += $(filter-out $(CLANG_CONFIG_UNKNOWN_CFLAGS),$(TARGET_GLOBAL_CFLAGS))
 HOST_GLOBAL_CLANG_FLAGS += $(filter-out $(CLANG_CONFIG_UNKNOWN_CFLAGS),$(HOST_GLOBAL_CFLAGS))
+
 TARGET_arm_CLANG_CFLAGS += $(filter-out $(CLANG_CONFIG_UNKNOWN_CFLAGS),$(TARGET_arm_CFLAGS))
 TARGET_thumb_CLANG_CFLAGS += $(filter-out $(CLANG_CONFIG_UNKNOWN_CFLAGS),$(TARGET_thumb_CFLAGS))
 
-# llvm does not yet support -march=armv5e nor -march=armv5te or -march=armv7-a, fall back to armv5 or armv5t or armv7
+# llvm does not yet support -march=armv5e nor -march=armv5te, fall back to armv5 or armv5t
 $(call clang-flags-subst,-march=armv5te,-march=armv5t)
 $(call clang-flags-subst,-march=armv5e,-march=armv5)
-$(call clang-flags-subst,-march=armv7-a,-march=armv7)
 
 # clang does not support -Wno-psabi and -Wno-unused-but-set-variable
 $(call clang-flags-subst,-Wno-psabi,)
 $(call clang-flags-subst,-Wno-unused-but-set-variable,)
 
-# clang does not support -mcpu=cortex-a15 yet - fall back to armv7 for now
-$(call clang-flags-subst,-mcpu=cortex-a15,-march=armv7)
+# clang does not support -mcpu=cortex-a15 yet - fall back to armv7-a for now
+$(call clang-flags-subst,-mcpu=cortex-a15,-march=armv7-a)
 
 ADDRESS_SANITIZER_CONFIG_EXTRA_CFLAGS := -fsanitize=address
 ADDRESS_SANITIZER_CONFIG_EXTRA_LDFLAGS := -Wl,-u,__asan_preinit
