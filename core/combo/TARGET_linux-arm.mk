@@ -106,7 +106,6 @@ TARGET_GLOBAL_CFLAGS += \
 			-mtune=cortex-a8 \
 			-mfpu=neon \
 			-mfloat-abi=softfp \
-			-marm \
 			-msoft-float -fpic $(PIE_GLOBAL_CFLAGS) \
 			-ffunction-sections \
 			-fdata-sections \
