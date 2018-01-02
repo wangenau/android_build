@@ -528,12 +528,15 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
   if "selinux_fc" in OPTIONS.info_dict:
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
 
+  script.Print("Formatting /system...");
   script.FormatPartition("/system")
+  script.Print("Mounting /system...");
   script.Mount("/system")
+  script.Print("Installing...");
   if not OPTIONS.no_separate_recovery:
     script.UnpackPackageDir("recovery", "/system")
   script.UnpackPackageDir("system", "/system")
-
+  script.Print("Making symlinks...");
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
 
@@ -559,6 +562,7 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
   script.WriteRawImage("/boot", "boot.img")
 
   script.ShowProgress(0.1, 0)
+  script.Print("Installation complete!");
   device_specific.FullOTA_InstallEnd()
 
   if OPTIONS.extra_script is not None:
