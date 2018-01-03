@@ -509,6 +509,19 @@ reboot_now("%(bcb_dev)s", "recovery");
 else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
 """ % bcb_dev)
 
+  script.Print(" ")
+  script.Print("  __  ____ __ ____ ____ _  _ ____ ")
+  script.Print(" / _\(  _ (  (  __/ ___/ )( (  __)")
+  script.Print("/    \)   /)( ) _)\___ \ \/ /) _) ")
+  script.Print("\_/\_(__\_(__(____(____/\__/(____)")
+  script.Print("   ____ ____ _  _  ___ __  __ _   ")
+  script.Print("  (    (  __/ )( \/ __/  \(  ( \  ")
+  script.Print("   ) D () _)\ \/ ( (_(  O /    /  ")
+  script.Print("  (____(____)\__/ \___\__/\_)__)  ")
+  script.Print("    Customized LineageOS 11.0     ")
+  script.Print("       Developer: wangenau        ")
+  script.Print(" ")
+
   device_specific.FullOTA_InstallBegin()
 
   if OPTIONS.backuptool:
@@ -1139,3 +1152,4 @@ if __name__ == '__main__':
     print "   ERROR: %s" % (e,)
     print
     sys.exit(1)
+
