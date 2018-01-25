@@ -28,7 +28,6 @@ PRODUCT_PACKAGES := \
     CertInstaller \
     Gallery2 \
     LatinIME \
-    Launcher2 \
     Provision \
     QuickSearchBox \
     Settings \
