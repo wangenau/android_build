@@ -14,8 +14,13 @@ echo "ro.build.version.base_os=$PLATFORM_BASE_OS"
 echo "ro.build.date=`date`"
 echo "ro.build.date.utc=`date +%s`"
 echo "ro.build.type=$TARGET_BUILD_TYPE"
-echo "ro.build.user=$USER"
-echo "ro.build.host=`hostname`"
+if [ -n "$KBUILD_BUILD_USER" ] ; then
+  echo "ro.build.user=$KBUILD_BUILD_USER"
+  echo "ro.build.host=$KBUILD_BUILD_HOST"
+else
+  echo "ro.build.user=$USER"
+  echo "ro.build.host=`hostname`"
+fi
 echo "ro.build.tags=$BUILD_VERSION_TAGS"
 echo "ro.product.brand=$PRODUCT_BRAND"
 echo "ro.product.name=$PRODUCT_NAME"
