@@ -44,7 +44,6 @@ PRODUCT_PACKAGES := \
 	InputDevices \
 	LatinIME \
 	CertInstaller \
-	LiveWallpapersPicker \
 	ApiDemos \
 	GestureBuilder \
 	QuickSearchBox \
