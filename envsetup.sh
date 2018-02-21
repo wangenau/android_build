@@ -462,10 +462,7 @@ function add_lunch_combo()
 }
 
 # add the default one here
-add_lunch_combo aosp_arm-user
-add_lunch_combo aosp_x86-eng
-add_lunch_combo aosp_mips-eng
-add_lunch_combo vbox_x86-eng
+# no defaults
 
 function print_lunch_menu()
 {
@@ -1538,7 +1535,7 @@ function cafremote()
     then
         PFX="platform/"
     fi
-    git remote add caf git://codeaurora.org/$PFX$PROJECT
+    git remote add caf https://source.codeaurora.org/quic/la/$PFX$PROJECT
     echo "Remote 'caf' created"
 }
 

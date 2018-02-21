@@ -55,7 +55,6 @@ PRODUCT_PACKAGES += \
     gps.goldfish \
     sensors.goldfish
 
-
 PRODUCT_COPY_FILES += \
     device/generic/goldfish/fstab.goldfish:root/fstab.goldfish \
     device/generic/goldfish/init.goldfish.rc:root/init.goldfish.rc \

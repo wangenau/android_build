@@ -146,19 +146,6 @@ endif
 java_version_str := $(shell unset _JAVA_OPTIONS JAVA_TOOL_OPTIONS && java -version 2>&1)
 javac_version_str := $(shell unset _JAVA_OPTIONS JAVA_TOOL_OPTIONS && javac -version 2>&1)
 
-# Check for the corrent jdk
-ifneq ($(shell echo '$(java_version_str)' | grep -i openjdk),)
-$(info ************************************************************)
-$(info You are attempting to build with an unsupported JDK.)
-$(info $(space))
-$(info You use OpenJDK but only Sun/Oracle JDK is supported.)
-$(info Please follow the machine setup instructions at)
-$(info $(space)$(space)$(space)$(space)https://source.android.com/source/download.html)
-$(info $(space))
-$(info Continue at your own peril!)
-$(info ************************************************************)
-endif
-
 # Check for the correct version of java
 java_version := $(shell echo '$(java_version_str)' | head -n 1 | grep '^java .*[ "]1\.[67][\. "$$]')
 ifneq ($(shell echo '$(java_version_str)' | grep -i openjdk),)

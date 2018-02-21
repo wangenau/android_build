@@ -28,10 +28,8 @@ PRODUCT_PACKAGES := \
     Gallery2 \
     LatinIME \
     Provision \
-    QuickSearchBox \
     Settings \
     Sync \
-    Updater \
     CalendarProvider \
     SyncProvider \
     bluetooth-health \
