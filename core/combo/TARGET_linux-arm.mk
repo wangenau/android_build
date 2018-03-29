@@ -118,6 +118,11 @@ TARGET_GLOBAL_CFLAGS += \
 			-include $(android_config_h) \
 			-I $(dir $(android_config_h))
 
+# This optimization causes dalvik not to build with gcc 5.x.
+ifneq ($(filter 5.%, $(TARGET_GCC_VERSION)),)
+TARGET_GLOBAL_CFLAGS += -fno-tree-slp-vectorize
+endif
+
 # This is to avoid the dreaded warning compiler message:
 #   note: the mangling of 'va_list' has changed in GCC 4.4
 #
