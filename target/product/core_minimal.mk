@@ -54,7 +54,6 @@ PRODUCT_PACKAGES += \
     libsqlite_jni \
     libwilhelm \
     make_ext4fs \
-    screencap \
     sensorservice \
     uiautomator \
     uncrypt
