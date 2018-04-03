@@ -20,7 +20,7 @@
 # core_minimal.mk instead.
 
 PRODUCT_PACKAGES += \
-    Browser \
+    Chromium \
     Contacts \
     DocumentsUI \
     DownloadProviderUi \
