@@ -30,7 +30,6 @@ PRODUCT_PACKAGES += \
     libgabi++ \
     libkeystore \
     libmdnssd \
-    libnfc_ndef \
     libportable \
     libpowermanager \
     libspeexresampler \
