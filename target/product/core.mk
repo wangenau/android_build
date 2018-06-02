@@ -22,7 +22,6 @@
 PRODUCT_PACKAGES += \
     Contacts \
     DocumentsUI \
-    DownloadProviderUi \
     ExternalStorageProvider \
     KeyChain \
     PacProcessor \
