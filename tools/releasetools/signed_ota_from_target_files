@@ -1,0 +1,42 @@
+#!/bin/bash
+# signed_ota_from_target_files (LineageOS 11)
+# by wangenau
+#
+# This script will sign your last generated target_files zip and the apks inside
+# of it. The first argument of this script has to be the PRODUCT_OUT directory,
+# the second should be the LINEAGE_VERSION. It should be called from your
+# working directory (use croot). To successfully run this script, release keys
+# have to exist inside ~/.android-certs.
+
+# get the newest generated target_files zip
+unset target_zip
+target_zip=$(cd $1/obj/PACKAGING/target_files_intermediates/; \
+  ls -t | awk '{printf("%s",$0);exit}')
+
+# sign the apk files
+./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs \
+  $1/obj/PACKAGING/target_files_intermediates/"${target_zip}" \
+  signed-target_files.zip
+
+# remove an existent signed ota zip
+if [ -f lineage-$2-signed.zip ]; then
+  rm lineage-$2-signed.zip
+fi
+
+# check if the signing apk step was successful
+if [ -f signed-target_files.zip ]; then
+  # generate a signed ota zip
+  ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey \
+    signed-target_files.zip \
+    lineage-$2-signed.zip
+
+  # remove the generated signed target_files zip
+  rm signed-target_files.zip
+fi
+
+# notify the user if the signing process was successful
+if [ -f lineage-$2-signed.zip ]; then
+  echo "\033[36m"Signing Complete: $(pwd)/lineage-$2-signed.zip"\033[0m"
+else
+  echo "\033[31m"Signing failed."\033[0m"
+fi
