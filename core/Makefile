@@ -1514,6 +1514,7 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
 CM_TARGET_PACKAGE := $(PRODUCT_OUT)/lineage-$(LINEAGE_VERSION).zip
+CM_SIGNED_TARGET_PACKAGE := $(PRODUCT_OUT)/lineage-$(LINEAGE_VERSION)-signed.zip
 
 .PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
@@ -1524,7 +1525,7 @@ endif
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CM_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(CM_TARGET_PACKAGE) > $(CM_TARGET_PACKAGE).md5sum
 	@echo -e ${CL_CYN}"Package Complete: $(CM_TARGET_PACKAGE)"${CL_RST}
-	$(hide) sh ./build/tools/releasetools/signed_ota_from_target_files $(PRODUCT_OUT)/obj/PACKAGING/target_files_intermediates/ lineage-$(LINEAGE_VERSION)-signed
+	$(hide) sh ./build/tools/releasetools/signed_ota_from_target_files $(BUILT_TARGET_FILES_PACKAGE) $(CM_SIGNED_TARGET_PACKAGE)
 
 # -----------------------------------------------------------------
 # The update package

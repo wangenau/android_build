@@ -2,41 +2,39 @@
 # signed_ota_from_target_files (LineageOS 11)
 # by wangenau
 #
-# This script will sign your last generated target files zip and the apks inside
-# of it. The first argument of this script has to be the directory to your
-# target files packages, the second should be the final zip name. It should be
-# called from your working directory (use croot). To successfully run this
-# script, release keys have to exist inside ~/.android-certs.
+# This script will sign a generated target files package and the apks inside
+# of it. The first argument should be the path to your target files package, the
+# second should be the final zip name.
 
+# certificate directory containing media, platform, releasekey and shared keys
 cert_dir=~/.android-certs
-
-# get the newest generated target files package
-target_zip=$(cd "$1"; ls -t | awk '{printf("%s",$0);exit}')
+# directory to this script
+script_dir=$(dirname $(readlink -f $0))
 
 # sign the apk files
-./build/tools/releasetools/sign_target_files_apks -d "$cert_dir" \
-  "$1"/"$target_zip" \
-  signed-target_files.zip
+$script_dir/sign_target_files_apks -d "$cert_dir" \
+  "$1" \
+  "$2".tmp
 
 # remove an existent signed ota package with the same name
-if [ -f "$2".zip ]; then
-  rm "$2".zip
+if [ -f "$2" ]; then
+  rm "$2"
 fi
 
 # check if the signing apk step was successful
-if [ -f signed-target_files.zip ]; then
+if [ -f "$2".tmp ]; then
   # generate a signed ota package
-  ./build/tools/releasetools/ota_from_target_files -k "$cert_dir"/releasekey \
-    signed-target_files.zip \
-    "$2".zip
+  $script_dir/ota_from_target_files -k "$cert_dir"/releasekey \
+    "$2".tmp \
+    "$2"
 
   # remove the generated signed target files package
-  rm signed-target_files.zip
+  rm "$2".tmp
 fi
 
 # notify the user if the signing process was successful
-if [ -f "$2".zip ]; then
-  echo "\033[36m"Signing Complete: $(pwd)/"$2".zip"\033[0m"
+if [ -f "$2" ]; then
+  echo "\033[36m"Signed Package Complete: "$2""\033[0m"
 else
   echo "\033[31m"Signing failed."\033[0m"
 fi
