@@ -2,31 +2,23 @@
 # signed_ota_from_target_files (LineageOS 11)
 # by wangenau
 #
-# This script will sign a generated target files package and the apks inside
-# of it. The first argument should be the path to your target files package, the
-# second should be the final zip name.
+# This script will sign a target files package and the apks inside of it. The
+# first argument should be the path to your target files package, the second
+# should be the final zip name.
+
+# directory to this script (and the scripts that are used later)
+script_dir=$(dirname $(readlink -f $0))
 
 # certificate directory containing media, platform, releasekey and shared keys
 cert_dir=~/.android-certs
-# directory to this script (and the scripts that are used)
-script_dir=$(dirname $(readlink -f $0))
 
 # sign apk files
-$script_dir/sign_target_files_apks -d "$cert_dir" \
-  "$1" \
-  "$2".tmp
-
-# remove ota package with the same name
-if [ -f "$2" ]; then
-  rm "$2"
-fi
+"$script_dir"/sign_target_files_apks -d "$cert_dir" "$1" "$2".tmp
 
 # check if the signing apk step was successful
 if [ -f "$2".tmp ]; then
   # generate a signed ota package
-  $script_dir/ota_from_target_files -k "$cert_dir"/releasekey \
-    "$2".tmp \
-    "$2"
+  "$script_dir"/ota_from_target_files -k "$cert_dir"/releasekey "$2".tmp "$2"
 
   # remove the generated signed target files package
   rm "$2".tmp
