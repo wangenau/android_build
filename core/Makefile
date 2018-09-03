@@ -1526,6 +1526,8 @@ endif
 	$(hide) $(MD5SUM) $(CM_TARGET_PACKAGE) > $(CM_TARGET_PACKAGE).md5sum
 	@echo -e ${CL_CYN}"Package Complete: $(CM_TARGET_PACKAGE)"${CL_RST}
 	$(hide) sh ./build/tools/releasetools/signed_ota_from_target_files $(BUILT_TARGET_FILES_PACKAGE) $(CM_SIGNED_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(CM_SIGNED_TARGET_PACKAGE) > $(CM_SIGNED_TARGET_PACKAGE).md5sum
+	@echo -e ${CL_CYN}"Signed Package Complete: $(CM_SIGNED_TARGET_PACKAGE)"${CL_RST}
 
 # -----------------------------------------------------------------
 # The update package

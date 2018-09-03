@@ -8,15 +8,15 @@
 
 # certificate directory containing media, platform, releasekey and shared keys
 cert_dir=~/.android-certs
-# directory to this script
+# directory to this script (and the scripts that are used)
 script_dir=$(dirname $(readlink -f $0))
 
-# sign the apk files
+# sign apk files
 $script_dir/sign_target_files_apks -d "$cert_dir" \
   "$1" \
   "$2".tmp
 
-# remove an existent signed ota package with the same name
+# remove ota package with the same name
 if [ -f "$2" ]; then
   rm "$2"
 fi
@@ -30,11 +30,4 @@ if [ -f "$2".tmp ]; then
 
   # remove the generated signed target files package
   rm "$2".tmp
-fi
-
-# notify the user if the signing process was successful
-if [ -f "$2" ]; then
-  echo "\033[36m"Signed Package Complete: "$2""\033[0m"
-else
-  echo "\033[31m"Signing failed."\033[0m"
 fi
